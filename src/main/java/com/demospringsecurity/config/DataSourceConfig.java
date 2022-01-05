@@ -16,7 +16,7 @@ public class DataSourceConfig {
     DotenvService dotenvService;
     @Bean(name = "dataSource")
     public DataSource getDataSource(){
-
+        //Config bằng hikariDataSource
         HikariConfig hikariConfig = new HikariConfig();
         hikariConfig.setDriverClassName(dotenvService.getValueDotenv("DB_CLASSNAME"));
         hikariConfig.setJdbcUrl(dotenvService.getValueDotenv("DB_URL"));

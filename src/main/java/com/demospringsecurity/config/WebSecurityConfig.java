@@ -24,14 +24,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder(){
+		//mã hóa password bằng BCrypt
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		return encoder;
 	}
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+				//mot so khai niem https://techmaster.vn/posts/36312/spring-security-ban-sau-ve-authentication-va-authorization-p2
+				/*
+				link tham khao spring security
+					https://www.youtube.com/watch?v=TEtm-mMvfBk
+					https://www.youtube.com/watch?v=Wvs6Ag8LTwg
+					https://www.youtube.com/watch?v=5DYwEoq9WJU&t=1411s
+					https://www.youtube.com/watch?v=A2qN9pMR3MQ
+					https://www.youtube.com/watch?v=DatkpsipMWI
+				*/
+
 		http
 			.authorizeRequests()
-				.antMatchers("/*", "/home", "/").permitAll()
+				.antMatchers("/*", "/home", "/")
+				.permitAll()
 				.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 				.antMatchers("/user/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 				.and()
