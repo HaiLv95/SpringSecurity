@@ -6,8 +6,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DotenvService {
     public String getValueDotenv(String keyName){
+
         Dotenv dotenv = Dotenv.configure()
-                .directory("E:\\Java\\Java5\\Project\\SpringSecurity")
+                .directory("./")
                 .ignoreIfMalformed()
                 .ignoreIfMissing()
                 .load();
